@@ -96,7 +96,7 @@ def make_var_files():
         with open(f"./Alter/Alter-train/variables/{fname}","w") as f:
             f.write(fit_var_template(ctemp,cname,cvalue))
 
-
+ 
 def fit_var_template(template, name, value):
     template = template.replace("{var}",name)
     template = template.replace("{value}",value)
