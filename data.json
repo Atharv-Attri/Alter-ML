@@ -1,0 +1,38 @@
+
+{
+    "var": {
+        "name": [
+            "apples",
+            "rank",
+            "mouse",
+            "quantity",
+            "gabble",
+            "tmp",
+            "apple-count",
+            "num_fish",
+            "numQuan",
+            "QuanFish"
+        ],
+        "templates": [
+            "set {var} to {value}",
+            "{var}={value}",
+            "{var] should equal {value}",
+            "set {var} = {value",
+            "let {var} equal {value}",
+            "let {var} represent {value}",
+            "{var} equals {value}",
+            "{var} = {value}",
+            "{var}= {value}",
+            "let {var} = {value}",
+            "let {var}={value}",
+            "let {var}= {value}",
+            "let {var} ={value}",
+            "set {var} equal to {value}",
+            "set {var} = to {value}",
+            "set {var} = {value}",
+            "set {var}={value}",
+            "set {var}= {value}",
+            "set {var} =value"
+        ]
+    }
+}
