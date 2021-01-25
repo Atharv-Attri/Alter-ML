@@ -165,13 +165,13 @@ def make_if_files() -> None:
         data = json.load(f)
     templates = data["if"]["templates"]
 
-    for i in range(5,9):
+    for i in range(10000,14000):
         template = random.choice(templates)
         cond = make_condition()
         fname = str(i).zfill(6)
         with open(f"./Alter/Alter-train/if/{fname}","w") as f:
             f.write(template.replace("{cond}",cond))
-    for i in range(9,10):
+    for i in range(14000,15000):
         template = random.choice(templates)
         cond = make_condition()
         fname = str(i).zfill(6)
