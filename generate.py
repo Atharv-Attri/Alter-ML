@@ -1,7 +1,6 @@
-
 import json
 import random
-
+import util
 
 def varname():
     with open("data.json", "r") as f:
@@ -43,7 +42,7 @@ def varname():
             f.write(i + "\n")
 
 
-def varvalue():
+def varvalue() -> None:
     names = []
     for _ in range(5000):
         num = random.randint(0, 5)
@@ -80,7 +79,7 @@ def varvalue():
             f.write(i + "\n")
 
 
-def make_var_files():
+def make_var_files() -> None:
     with open("data.json", "r") as f:
         data = json.load(f)
     templates = data["var"]["templates"]
@@ -88,22 +87,28 @@ def make_var_files():
         names = f.read().split("\n")
     with open("./variables/values.txt","r") as f:
         values = f.read().split("\n")
-    for n in range(10):
+    for n in range(4000):
         fname = str(n).zfill(6)
         ctemp = random.choice(templates)
         cname = random.choice(names)
         cvalue = random.choice(values)
         with open(f"./Alter/Alter-train/variables/{fname}","w") as f:
             f.write(fit_var_template(ctemp,cname,cvalue))
-
+    for n in range(4000,5000):
+        fname = str(n).zfill(6)
+        ctemp = random.choice(templates)
+        cname = random.choice(names)
+        cvalue = random.choice(values)
+        with open(f"./Alter/Alter-test/variables/{fname}","w") as f:
+            f.write(fit_var_template(ctemp,cname,cvalue))
  
-def fit_var_template(template, name, value):
+def fit_var_template(template: str, name: str, value: str) -> str:
     template = template.replace("{var}",name)
     template = template.replace("{value}",value)
     return template
 
 
-def truncate(f, n):
+def truncate(f:float, n:int) -> float:
     '''Truncates/pads a float f to n decimal places without rounding'''
     s = '{}'.format(f)
     if 'e' in s or 'E' in s:
@@ -111,6 +116,65 @@ def truncate(f, n):
     i, p, d = s.partition('.')
     return '.'.join([i, (d+'0'*n)[:n]])
 
-varname()
-varvalue()
-make_var_files()
+
+def fit_ifwhile_template(template: str, cond: str) -> str:
+    return template.replace("{cond}",cond)
+
+def make_condition() -> str:
+    names = util.get_names()
+    
+    condition = random.choice(util.cond_temp)
+    comp = random.choice(util.comparables)
+    vals = []
+    for _ in range(2):
+        tmp = random.randint(0,1)
+        if tmp == 0:
+            vals.append(random.choice(names))
+        else:
+            dec = random.randint(0,1)
+            if dec == 0:
+                vals.append(str(random.randint(0,10000000)))
+            else:
+                vals.append(str(random.uniform(0,10000000)))
+    condition = condition.replace("{oper}",comp).replace("{val1}",vals[0]).replace("{val2}",vals[1])
+    return condition
+
+
+def make_while_files() -> None:
+    with open("data.json", "r") as f:
+        data = json.load(f)
+    templates = data["while"]["templates"]
+
+    for i in range(5000,9000):
+        template = random.choice(templates)
+        cond = make_condition()
+        fname = str(i).zfill(6)
+        with open(f"./Alter/Alter-train/while/{fname}.txt","w") as f:
+            f.write(template.replace("{cond}",cond))
+    for i in range(9000,10000):
+        template = random.choice(templates)
+        cond = make_condition()
+        fname = str(i).zfill(6)
+        with open(f"./Alter/Alter-test/while/{fname}.txt","w") as f:
+            f.write(template.replace("{cond}",cond))
+#varname()
+#varvalue()
+#make_var_files()
+def make_if_files() -> None:
+    with open("data.json", "r") as f:
+        data = json.load(f)
+    templates = data["if"]["templates"]
+
+    for i in range(5,9):
+        template = random.choice(templates)
+        cond = make_condition()
+        fname = str(i).zfill(6)
+        with open(f"./Alter/Alter-train/if/{fname}.txt","w") as f:
+            f.write(template.replace("{cond}",cond))
+    for i in range(9,10):
+        template = random.choice(templates)
+        cond = make_condition()
+        fname = str(i).zfill(6)
+        with open(f"./Alter/Alter-test/if/{fname}.txt","w") as f:
+            f.write(template.replace("{cond}",cond))
+

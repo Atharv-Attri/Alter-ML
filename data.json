@@ -34,5 +34,26 @@
             "set {var}= {value}",
             "set {var} =value"
         ]
+    },
+    "while": {
+        "templates":[
+            "while {cond} ->",
+            "while {cond} is true ->",
+            "while {cond} is false"
+        ]
+    },
+    "if": {
+        "templates":[
+            "if {cond} is true",
+            "in the event {cond} is true",
+            "in the event of {cond} being true",
+            "if {cond} is false",
+            "in the event {cond} is false",
+            "in the event of {cond} being false",
+            "assuming {cond} is true",
+            "assuming {cond} is false",
+            "in the event {cond}",
+            "assuming {cond}"
+        ]
     }
 }
