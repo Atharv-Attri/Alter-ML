@@ -149,13 +149,13 @@ def make_while_files() -> None:
         template = random.choice(templates)
         cond = make_condition()
         fname = str(i).zfill(6)
-        with open(f"./Alter/Alter-train/while/{fname}.txt","w") as f:
+        with open(f"./Alter/Alter-train/while/{fname}","w") as f:
             f.write(template.replace("{cond}",cond))
     for i in range(9000,10000):
         template = random.choice(templates)
         cond = make_condition()
         fname = str(i).zfill(6)
-        with open(f"./Alter/Alter-test/while/{fname}.txt","w") as f:
+        with open(f"./Alter/Alter-test/while/{fname}","w") as f:
             f.write(template.replace("{cond}",cond))
 #varname()
 #varvalue()
@@ -169,12 +169,19 @@ def make_if_files() -> None:
         template = random.choice(templates)
         cond = make_condition()
         fname = str(i).zfill(6)
-        with open(f"./Alter/Alter-train/if/{fname}.txt","w") as f:
+        with open(f"./Alter/Alter-train/if/{fname}","w") as f:
             f.write(template.replace("{cond}",cond))
     for i in range(9,10):
         template = random.choice(templates)
         cond = make_condition()
         fname = str(i).zfill(6)
-        with open(f"./Alter/Alter-test/if/{fname}.txt","w") as f:
+        with open(f"./Alter/Alter-test/if/{fname}","w") as f:
             f.write(template.replace("{cond}",cond))
+
+make_var_files()
+print("="*20,"var made!","="*20)
+make_while_files()
+print("="*20,"while made!","="*20)
+make_if_files()
+print("="*20,"if made!","="*20)
 
