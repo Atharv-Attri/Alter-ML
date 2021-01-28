@@ -1,2 +1,4 @@
 Alter/*
 !*/.gitkeep
+*.pkl
+*.pickle

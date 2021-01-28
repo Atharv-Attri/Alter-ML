@@ -1,7 +1,7 @@
 comparables = ["==", "=>", "<=", ">=", "=<", ">", "<"]
 
-with open("./variables/names.txt","r") as f:
-    names = f.read().split('\n')
+with open("./variables/names.txt", "r") as f:
+    names = f.read().split("\n")
 
 
 def get_names() -> list:
@@ -9,4 +9,9 @@ def get_names() -> list:
     return names
 
 
-cond_temp = ["{val1} {oper} {val2}","{val1} {oper}{val2}","{val1}{oper} {val2}","{val1}{oper}{val2}"]
+cond_temp = [
+    "{val1} {oper} {val2}",
+    "{val1} {oper}{val2}",
+    "{val1}{oper} {val2}",
+    "{val1}{oper}{val2}",
+]
