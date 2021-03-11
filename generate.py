@@ -141,8 +141,8 @@ def make_condition() -> str:
                 vals.append(str(random.uniform(0, 10000000)))
     condition = (
         condition.replace("{oper}", comp)
-        .replace("{val1}", vals[0])
-        .replace("{val2}", vals[1])
+            .replace("{val1}", vals[0])
+            .replace("{val2}", vals[1])
     )
     return condition
 
@@ -164,6 +164,11 @@ def make_while_files() -> None:
         fname = str(i).zfill(6)
         with open(f"./Alter/Alter-test/while/{fname}", "w") as f:
             f.write(template.replace("{cond}", cond))
+
+
+
+def make_math() -> None:
+
 
 
 # varname()
@@ -192,48 +197,68 @@ def var_tsv() -> None:
     with open("data.json", "r") as f:
         data = json.load(f)
     templates = data["var"]["templates"]
+    dsm = data["dsm"]
     with open("./variables/names.txt", "r") as f:
         names = f.read().split("\n")
     with open("./variables/values.txt", "r") as f:
         values = f.read().split("\n")
-    for n in range(2000):
+    for n in range(3000):
         fname = str(n).zfill(6)
         ctemp = random.choice(templates)
         cname = random.choice(names)
         cvalue = random.choice(values)
         with open(f"./tsvs/var.tsv", "a") as f:
-            f.write(fit_var_template(ctemp, cname, cvalue) + "\tpos\n")
+            f.write(fit_var_template(ctemp, cname, cvalue) + "\tvar\n")
     with open("data.json", "r") as f:
         data = json.load(f)
     templates = data["if"]["templates"]
 
-    for i in range(500):
+    for i in range(3000):
         template = random.choice(templates)
         cond = make_condition()
         fname = str(i).zfill(6)
         with open(f"./tsvs/var.tsv", "a") as f:
-            f.write(template.replace("{cond}", cond) + "\tneg\n")
+            f.write(template.replace("{cond}", cond) +random.choice(dsm) +"\tif\n")
 
     with open("data.json", "r") as f:
         data = json.load(f)
     templates = data["while"]["templates"]
 
-    for i in range(500):
+    for i in range(3000):
         template = random.choice(templates)
         cond = make_condition()
         fname = str(i).zfill(6)
         with open(f"./tsvs/var.tsv", "a") as f:
-            f.write( template.replace("{cond}", cond) + "\tneg\n")
+            f.write(template.replace("{cond}", cond) + random.choice(dsm) + "\twhile\n")
+
+    with open("data.json", "r") as f:
+        data = json.load(f)
+    templates = data["varmath"]["templates"]
+
+    with open("./variables/names.txt","r") as f:
+        names = f.read().split()
+
+    with open("./variables/values.txt","r") as f:
+        values = f.read.split()
+
+    for i in range(2000):
+        template = random.choice(templates)
+        n = random.choice(names)
+        v = random.choice(values)
+        with open(f"./tsvs/var.tsv", "a") as f:
+            f.write(template.replace("{name}", n).replace("{values}",v) + "\tvarmath\n")
 
 
 def shuffle():
-    with open("./tsvs/var.tsv","r") as f:
+    with open("./tsvs/var.tsv", "r") as f:
         lines = f.read().split("\n")
-    with open("./tsvs/var.tsv","w") as f:f.write("")
+    with open("./tsvs/var.tsv", "w") as f:
+        f.write("")
     random.shuffle(lines)
-    with open("./tsvs/var.tsv","a") as f:
+    with open("./tsvs/var.tsv", "a") as f:
         for i in lines:
-            f.write(i+"\n")
+            f.write(i + "\n")
+
 
 def make_json(filename: str) -> None:
     with open(filename, "r") as f:
@@ -243,11 +268,13 @@ def make_json(filename: str) -> None:
         i = i.split("\t")
         if len(i) != 2:
             continue
-        cur = {"text": None,"label": None}
+        cur = {"text": None, "label": None}
         cur["text"] = i[0]
         cur["label"] = i[1]
         al.append(cur)
-    with open("model.json","w") as f:
-        json.dump(al,f,indent=4)
+    with open("model.json", "w") as f:
+        json.dump(al, f, indent=4)
+
+
 var_tsv()
 make_json("./tsvs/var.tsv")

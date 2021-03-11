@@ -1,4 +1,3 @@
-
 {
     "var": {
         "name": [
@@ -37,9 +36,16 @@
     },
     "while": {
         "templates":[
-            "while {cond} ->",
-            "while {cond} is true ->",
-            "while {cond} is false->"
+            "while {cond}",
+            "while {cond} is true",
+            "while {cond} is false"
+            "When {cond}",
+            "Repeat while {cond}",
+            "As long as {cond} ",
+            "Whilst {cond} ",
+            "while {cond} ",
+            "while {cond} is true ",
+            "while {cond} is false”
         ]
     },
     "if": {
@@ -53,7 +59,45 @@
             "assuming {cond} is true->",
             "assuming {cond} is false->",
             "in the event {cond}->",
-            "assuming {cond}->"
+            "assuming {cond}->",
+            "Given {cond}",
+            "Provided {cond}",
+            "In the event {cond}",
+            "In the case that {cond}",
+            "Supposing that {cond}",
+            "Granted that {cond}",
+            "Whenever {cond}",
+            "if {cond} is true ",
+            "in the event {cond} is true",
+            "in the event of {cond} being true",
+            "if {cond} is false",
+            "in the event {cond} is false",
+            "in the event of {cond} being false",
+            "assuming {cond} is true",
+            "assuming {cond} is false",
+            "in the event {cond}",
+            "assuming {cond}"
         ]
-    }
+    },
+    "varmath": {
+        "templates": [
+            "Add {value} to {name}",
+            "Increase {name} by {value}",
+            "Make {name} greater by {value}",
+            "Raise {name} by {value}",
+            "Subtract {value] from {name}",
+            "Deduct {value} from {name}",
+            "Decrease {name} by {value}",
+            "Diminish {name} by {value}",
+            "Divide {name} by {value}",
+            "Split {name} by {value}",
+            "Multiply {name} by {value}",
+            "Multiply {value} by {name}"
+        ]
+    },
+    "dsm": [
+        "{",
+        ":"
+    ]
+
 }
