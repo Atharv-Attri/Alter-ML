@@ -167,7 +167,6 @@ def make_while_files() -> None:
 
 
 
-def make_math() -> None:
 
 
 
@@ -239,7 +238,7 @@ def var_tsv() -> None:
         names = f.read().split()
 
     with open("./variables/values.txt","r") as f:
-        values = f.read.split()
+        values = f.read().split()
 
     for i in range(2000):
         template = random.choice(templates)
